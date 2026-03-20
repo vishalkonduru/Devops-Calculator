@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevOps Calculator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a192f;
+            color: #ccd6f6;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            background: #112240;
+            padding: 3rem;
+            border-radius: 10px;
+            border: 1px solid #233554;
+            width: 100%;
+            max-width: 500px;
+            box-shadow: 0 10px 30px -15px rgba(0,0,0,0.5);
+        }
+        h1 {
+            color: #64ffda;
+            margin-bottom: 0.5rem;
+            font-size: 2rem;
+        }
+        .subtitle {
+            color: #8892b0;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+            border-bottom: 1px solid #233554;
+            padding-bottom: 1rem;
+        }
+        .badge {
+            display: inline-block;
+            background: #1a2b4a;
+            color: #64ffda;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-left: 0.5rem;
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #e6f1ff;
+            font-weight: 500;
+        }
+        input, select {
+            width: 100%;
+            padding: 0.8rem;
+            background: #0a192f;
+            border: 1px solid #233554;
+            border-radius: 5px;
+            color: #ccd6f6;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        input:focus, select:focus {
+            outline: none;
+            border-color: #64ffda;
+            box-shadow: 0 0 0 2px rgba(100,255,218,0.1);
+        }
+        .btn {
+            background: #64ffda;
+            color: #0a192f;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s;
+            margin-top: 1rem;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(100,255,218,0.3);
+        }
+        .result {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: #0a192f;
+            border-radius: 5px;
+            border: 1px solid #233554;
+            text-align: center;
+        }
+        .result-label {
+            color: #8892b0;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        .result-value {
+            color: #64ffda;
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+        .devops-status {
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid #233554;
+            font-size: 0.8rem;
+            color: #8892b0;
+            text-align: center;
+        }
+        .status-dot {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-right: 4px;
+        }
+        .status-dot.green { background: #4CAF50; }
+        .status-dot.yellow { background: #FFC107; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>DevOps Calculator 🚀</h1>
+        <div class="subtitle">
+            A calculator built with DevOps practices
+            <span class="badge">v1.0.0</span>
+        </div>
+
+        <form action="/calculate" method="POST">
+            <div class="form-group">
+                <label>First Number</label>
+                <input type="number" name="num1" step="any" required placeholder="Enter first number">
+            </div>
+
+            <div class="form-group">
+                <label>Second Number</label>
+                <input type="number" name="num2" step="any" required placeholder="Enter second number">
+            </div>
+
+            <div class="form-group">
+                <label>Operation</label>
+                <select name="operation" required>
+                    <option value="add">➕ Addition (+)</option>
+                    <option value="subtract">➖ Subtraction (-)</option>
+                    <option value="multiply">✖️ Multiplication (×)</option>
+                    <option value="divide">➗ Division (÷)</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn">Calculate 🧮</button>
+        </form>
+
+        {% if result is not none %}
+        <div class="result">
+            <div class="result-label">Result</div>
+            <div class="result-value">{{ result }}</div>
+        </div>
+        {% endif %}
+
+        <div class="devops-status">
+            <span class="status-dot green"></span> Redis Connected • 
+            <span class="status-dot green"></span> Docker Ready • 
+            <span class="status-dot yellow"></span> CI/CD Active
+        </div>
+    </div>
+</body>
+</html>
